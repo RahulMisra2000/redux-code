@@ -13,11 +13,10 @@ const selectedSongReducer = (selectedSong = null, action) => {
   if (action.type === 'SONG_SELECTED') {
     return action.payload;
   }
-
   return selectedSong;
 };
 
-export default combineReducers({
-  songs: songsReducer,
+export default combineReducers({          /************** * the keys of this object will become the names of the slices of state */  
+  songs: songsReducer,                    
   selectedSong: selectedSongReducer
 });
