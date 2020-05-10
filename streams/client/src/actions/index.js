@@ -1,5 +1,5 @@
-import streams from '../apis/streams';
-import history from '../history';
+import streams from '../apis/streams';    /* ******  This is an AXIOS instance to do AJAX call against the json-server provided API *  */
+import history from '../history';         /* ******  For doing Programmatic Navigation **** */
 import {
   SIGN_IN,
   SIGN_OUT,
@@ -23,12 +23,12 @@ export const signOut = () => {
   };
 };
 
-export const createStream = formValues => async (dispatch, getState) => {
+export const createStream = formValues => async (dispatch, getState) => {        /* ***** ASYNC Action Creator *** */
   const { userId } = getState().auth;
-  const response = await streams.post('/streams', { ...formValues, userId });
+  const response = await streams.post('/streams', { ...formValues, userId });    /* So CRUD can be done against the external API */
 
-  dispatch({ type: CREATE_STREAM, payload: response.data });
-  history.push('/');
+  dispatch({ type: CREATE_STREAM, payload: response.data });                     /* So Reducers can do CUD on the STORE &/
+  history.push('/');                                                             /* Programmatic navigation */
 };
 
 export const fetchStreams = () => async dispatch => {
